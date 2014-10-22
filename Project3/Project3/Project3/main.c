@@ -97,6 +97,7 @@ bool withinRange(int input, int minRange, int maxRange, char* name)
 int countPrimes(int number)
 {
 	int primeCount = 0; 
+	int i; 
 	for (int i = 0; i <= number; i++)
 	{
 		if (isPrime(i))
@@ -110,19 +111,19 @@ int countPrimes(int number)
 bool isPrime(int prime)
 {
 	bool isPrime = true;
+	int p;
 
 	if (prime < 2)
 	{
 		isPrime = false;
 	}
-	if (prime % 2 == 0 && prime != 2)
+	else if (prime % 2 == 0 && prime != 2)
 	{
-		isPrime = false; 
+		isPrime = false;
 	}
 	else
 	{
-		
-		for (int p = 3; p <= sqrt(prime); p += 2)
+		for (p = 3; p <= sqrt(prime) && isPrime; p += 2)
 		{
 			if (prime % p == 0)
 			{
@@ -130,7 +131,7 @@ bool isPrime(int prime)
 			}
 		}
 	}
-	return isPrime; 
+	return isPrime;
 }
 
 int getFactorial(int factorial)
@@ -151,13 +152,7 @@ int getFactorial(int factorial)
 
 bool isLeapYear(int year)
 {
-	bool isLeap = false;
-
-	if ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0)))
-	{
-		isLeap = true; 
-	}
-	return isLeap; 
+	return year % 4 == 0 && year % 100 != 0 || year % 400 == 0; 
 }
 
 void performOperations(int *prime, int *factorial, int *leapYear, bool *isLeapYearResult, int *factorialValue, int *primeCount)
