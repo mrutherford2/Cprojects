@@ -9,7 +9,6 @@ Course: COP2220
 Project #: 3
 Title: Simple Operations
 Dude Date: 11/2/2014
-Test
 
 Takes in command line arguments for prime, factorial, and a leapyear. 
 Converts the command line arguments from character form to integer.
