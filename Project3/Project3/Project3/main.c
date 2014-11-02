@@ -8,7 +8,8 @@ Authors: Matt Rutherford, Megan Molumby, Abubakr Hassan
 Course: COP2220
 Project #: 3
 Title: Simple Operations
-Dude Date: 11/2/2014
+Due Date: 11/2/2014
+
 
 Takes in command line arguments for prime, factorial, and a leapyear. 
 Converts the command line arguments from character form to integer.
@@ -181,7 +182,7 @@ bool isPrime(int prime)
 	//Flag variable for our prime number, set to true until we check if the number is prime
 	bool isPrime = true;
 
-	//Initilization of our index for the for loop so other compilers don't complain :) 
+	//Initialization of our index for the for loop so other compilers don't complain :) 
 	int i;
 
 	//If the prime value is less than 2 our flag is set to false
@@ -197,12 +198,12 @@ bool isPrime(int prime)
 	}
 
 	//Otherwise we start counting from 3, check all odd index values that are less than or equal to the square root of our prime value
-	//and our flag variable is true, and increments our index by 2 
+	//when our flag variable is true, and increments our index by 2 
 	else
 	{
 		for (i = 3; i <= sqrt(prime) && isPrime; i += 2)
 		{
-			//If our prime value is evenly divisble by 0 set flag to false
+			//If our prime value is evenly divisible by 0 set flag to false
 			if (prime % i == 0)
 			{
 				isPrime = false;
@@ -219,16 +220,16 @@ Returns the calculated factorial value of the original value that we passed into
 */
 int getFactorial(int factorial)
 {
-	//Variable to store our calcuated factorial value 
+	//Variable to store our calculated factorial value 
 	int calculatedFactorial;
 
-	//If the factorial value that we passed into the function is equal to 0, the calculated value is 1 
+	//If the factorial value that we passed into the function is equal to 0, the calculated value is 1, this is our base case
 	if (factorial == 0)
 	{
 		calculatedFactorial = 1;
 	}
-	//Otherwise we recursively calcuate the value of the factorial value passed into the function
-	//by multiplying our original value by having the function call itself and passing in our original value minus 1. 
+	//Otherwise we recursively calculate the value of the factorial value passed into the function
+	//by multiplying our original value by having the function call itself and passing in our original value minus 1 until we meet our base case condition. 
 	else
 	{
 		calculatedFactorial = factorial * getFactorial(factorial - 1);
