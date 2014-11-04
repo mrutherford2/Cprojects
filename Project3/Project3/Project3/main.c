@@ -20,7 +20,7 @@ Displays the amount of prime numbers, the calculated factorial, and if the year 
 //Function Prototypes
 bool withinRange(int input, int minRange, int maxRange, char *name);
 bool isPrime(int prime);
-bool validateInput(int *pPrime, int *pFactorial, int *pLeapYear);
+bool validateInput(int argc, char *argv[], int *pPrime, int *pFactorial, int *pLeapYear);
 bool isLeapYear(int year);
 int countPrimes(int number);
 int getFactorial(int factorial); 
@@ -37,16 +37,8 @@ int main(int argc, char *argv[])
 	printf("Matt Rutherford, Megan Molumby, Abubakr Hassan\n"); 
 	printf("Project 3 - Simple Operations\n"); 
 
-	//Checks to see if we received the correct amount of arguments from the command line
-	if (argc == 4)
-	{
-		//Converts our command line arguments from strings to integers 
-		prime = atoi(argv[1]); 
-		factorial = atoi(argv[2]); 
-		leapYear = atoi(argv[3]);
-
 		//Calls validateInput function to see if we have valid input from user
-		if (validateInput(&prime, &factorial, &leapYear)==true)
+		if (validateInput(argc, argv, &prime, &factorial, &leapYear)==true)
 		{	
 			//Performs operations on values input from command line
 			performOperations(&prime, &factorial, &leapYear, &isLeapYearResult, &factorialValue, &primeCount);
@@ -54,13 +46,7 @@ int main(int argc, char *argv[])
 			//Displays the results of our operations 
 			displayReport(prime, factorial, leapYear, isLeapYearResult, factorialValue, primeCount);
 		}
-	}
-	else
-	{
-		//Notifies the user that we did not receive the correct amount of command line arguments
-		printf("Did not get the correct amount of arguments"); 
-	}
-	
+
 	system("pause"); 
 	return 0; 
 }
@@ -69,15 +55,24 @@ int main(int argc, char *argv[])
 Validates our input values for prime, factorial, and leapyear. Checks to see if we have an integer value for 
 each of the inputs and if the value is within the specified range for each input.
 If it is not an integer value it will display the appropriate error message for each input value.
+argc - The amount of arguments that we receive from the command line
+argv[] - The array of command line arguments that we received from the command line
 *pPrime - Pointer for the prime value
 *pFactorial - Pointer for the factorial value
 *pLeapYear - Pointer for the leapyear value
 Returns the status of our flag variable for valid input 
 */
-bool validateInput(int *pPrime, int *pFactorial, int *pLeapYear)
+bool validateInput(int argc, char *argv[],int *pPrime, int *pFactorial, int *pLeapYear)
 {
 	//Flag variable for valid input, default value is set to false until we do our checking
 	bool isValid = false;
+
+	//Checks to see if we have the correct amount of command line arguments from the command line
+	if (argc == 4)
+	{
+		*pPrime = atoi(argv[1]);
+		*pFactorial = atoi(argv[2]);
+		*pLeapYear = atoi(argv[3]); 
 	
 	//Checks to see if prime value is an integer and greater than 0
 	if (*pPrime > 0)
@@ -118,7 +113,14 @@ bool validateInput(int *pPrime, int *pFactorial, int *pLeapYear)
 		printf("The Prime value is invalid.\n"); 
 	}
 
-	return isValid; 
+	}
+//Displays error message if we did not receive the correct amount of command line arguments 
+else
+{
+	printf("Did not receive the correct amount of command line arguments"); 
+}
+
+	return isValid;
 }
 
 /*
